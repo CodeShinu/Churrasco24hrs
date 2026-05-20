@@ -7,7 +7,7 @@
   <title>Kauã Festas | Buffet de Churrasco Premium à Domicílio</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800;14..32,900&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800;14..32,900&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&display=swap" rel="stylesheet">
   <style>
     /* ============================================
        DESIGN SYSTEM - VARIÁVEIS CSS PROFISSIONAIS
@@ -23,6 +23,9 @@
       --fire-red-dark: #B71C1C;
       --fire-red-light: #E53935;
       --ember-gold: #F5A623;
+      --ember-burnt: #8B3A00;
+      --ember-deep: #3D1A00;
+      --ember-copper: rgba(180, 80, 20, 0.2);
       --ember-glow: rgba(245, 166, 35, 0.12);
       --ember-soft: rgba(245, 166, 35, 0.05);
       --pure-white: #FFFFFF;
@@ -33,10 +36,11 @@
       --border-subtle: rgba(255, 255, 255, 0.06);
       --border-medium: rgba(255, 255, 255, 0.1);
       --border-gold: rgba(245, 166, 35, 0.22);
+      --border-copper: rgba(180, 80, 20, 0.2);
       --shadow-glow: 0 12px 32px rgba(211, 47, 47, 0.22);
       --shadow-gold: 0 20px 40px -12px rgba(245, 166, 35, 0.15);
       --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
-      --font-serif: 'Playfair Display', Georgia, serif;
+      --font-serif: 'Cormorant Garamond', Georgia, serif;
       --fs-hero: clamp(2.4rem, 6vw, 4.2rem);
       --fs-heading: clamp(1.8rem, 4vw, 2.5rem);
       --fs-subhead: clamp(1.1rem, 2.5vw, 1.4rem);
@@ -71,6 +75,25 @@
       }
     }
     
+    /* ============================================
+       FILTRO DE TEXTURA NOISE
+    ============================================ */
+    .noise-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.04'/%3E%3C/svg%3E");
+      background-repeat: repeat;
+      opacity: 0.35;
+    }
+    
+    /* ============================================
+       RESET & BASE
+    ============================================ */
     *,
     *::before,
     *::after {
@@ -92,6 +115,7 @@
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
       overflow-x: hidden;
+      position: relative;
     }
     
     .serif {
@@ -137,7 +161,24 @@
       overflow: hidden;
     }
     
-    /* Botões */
+    /* ============================================
+       SEPARADOR COM SVG DE BRASA/FUMAÇA
+    ============================================ */
+    .section-divider {
+      width: 100%;
+      height: 48px;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .section-divider svg {
+      width: 100%;
+      height: 100%;
+    }
+    
+    /* ============================================
+       BOTÕES
+    ============================================ */
     .btn-primary {
       display: inline-flex;
       align-items: center;
@@ -231,7 +272,9 @@
       transform: translateX(4px);
     }
     
-    /* Hero Section */
+    /* ============================================
+       HERO SECTION - ASSIMÉTRICA COM BRASA
+    ============================================ */
     .hero {
       min-height: 90vh;
       display: flex;
@@ -245,7 +288,8 @@
       position: absolute;
       inset: 0;
       background: radial-gradient(ellipse 70% 60% at 35% 25%, rgba(139, 20, 20, 0.18) 0%, transparent 60%),
-                  radial-gradient(ellipse 50% 40% at 85% 70%, rgba(245, 166, 35, 0.06) 0%, transparent 55%);
+                  radial-gradient(ellipse 50% 40% at 85% 70%, rgba(245, 166, 35, 0.06) 0%, transparent 55%),
+                  radial-gradient(ellipse 40% 30% at 20% 80%, rgba(139, 58, 0, 0.12) 0%, transparent 60%);
       pointer-events: none;
       z-index: 0;
     }
@@ -257,10 +301,27 @@
       left: 0;
       right: 0;
       bottom: 0;
-      background-image: radial-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px);
-      background-size: 40px 40px;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
+      background-repeat: repeat;
       pointer-events: none;
-      opacity: 0.4;
+      opacity: 0.5;
+    }
+    
+    /* Linha de brasa animada */
+    .ember-line {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--fire-red) 20%, var(--ember-gold) 50%, var(--fire-red) 80%, transparent);
+      background-size: 200% 100%;
+      animation: emberFlow 4s linear infinite;
+    }
+    
+    @keyframes emberFlow {
+      0% { background-position: 0% 0%; }
+      100% { background-position: 200% 0%; }
     }
     
     .hero-grid {
@@ -333,6 +394,7 @@
       background-clip: text;
       -webkit-background-clip: text;
       color: transparent;
+      font-variant-numeric: oldstyle-nums;
     }
     
     .stat-block p {
@@ -343,20 +405,22 @@
       margin-top: 4px;
     }
     
+    /* Hero Card Visual - inclinado e assimétrico */
     .hero-card {
       background: linear-gradient(145deg, rgba(18, 18, 24, 0.9), rgba(8, 8, 12, 0.95));
       backdrop-filter: blur(20px);
-      border: 1px solid var(--border-gold);
+      border: 1px solid var(--border-copper);
       border-radius: var(--border-radius-xl);
       padding: var(--space-40);
       position: relative;
       overflow: hidden;
-      transform: rotate(1deg);
+      transform: rotate(-2deg) translateY(12px);
       transition: all var(--transition-smooth);
     }
     
     .hero-card:hover {
-      transform: rotate(0deg) translateY(-8px);
+      transform: rotate(0deg) translateY(-4px);
+      border-color: var(--border-gold);
     }
     
     .hero-card::before {
@@ -386,7 +450,9 @@
       margin: var(--space-16) 0;
     }
     
-    /* Menu Grid - Cards de cardápio */
+    /* ============================================
+       MENU CARDS - BORDA COBRE E HOVER AQUECIDO
+    ============================================ */
     .menus {
       padding: var(--space-80) 0;
       position: relative;
@@ -402,6 +468,7 @@
       font-weight: 700;
       letter-spacing: -0.02em;
       margin-bottom: var(--space-12);
+      font-family: var(--font-serif);
     }
     
     .section-header .section-sub {
@@ -424,7 +491,7 @@
     
     .menu-card {
       background: var(--bg-card);
-      border: 1px solid var(--border-subtle);
+      border: 1px solid var(--border-copper);
       border-radius: var(--border-radius-md);
       padding: var(--space-28) var(--space-20);
       text-align: center;
@@ -448,8 +515,9 @@
     
     .menu-card:hover {
       transform: translateY(-6px);
-      border-color: var(--border-medium);
+      border-color: var(--border-gold);
       background: var(--bg-card-hover);
+      box-shadow: inset 0 0 40px rgba(200, 80, 0, 0.05);
     }
     
     .menu-card:hover::after {
@@ -483,7 +551,9 @@
       margin-top: var(--space-12);
     }
     
-    /* Modal de Cardápio Detalhado */
+    /* ============================================
+       MODAL (CARDÁPIO DETALHADO)
+    ============================================ */
     .modal {
       display: none;
       position: fixed;
@@ -491,7 +561,7 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: rgba(0, 0, 0, 0.92);
+      background: rgba(0, 0, 0, 0.95);
       backdrop-filter: blur(16px);
       z-index: 1000;
       justify-content: center;
@@ -507,7 +577,7 @@
     
     .modal-content {
       background: var(--bg-card);
-      border: 1px solid var(--border-gold);
+      border: 1px solid var(--border-copper);
       border-radius: var(--border-radius-xl);
       max-width: 900px;
       width: 90%;
@@ -519,14 +589,8 @@
     }
     
     @keyframes modalFadeIn {
-      from {
-        opacity: 0;
-        transform: scale(0.95);
-      }
-      to {
-        opacity: 1;
-        transform: scale(1);
-      }
+      from { opacity: 0; transform: scale(0.95); }
+      to { opacity: 1; transform: scale(1); }
     }
     
     .modal-close {
@@ -540,7 +604,6 @@
       z-index: 10;
       background: none;
       border: none;
-      font-family: monospace;
     }
     
     .modal-close:hover {
@@ -551,11 +614,7 @@
       padding: var(--space-40);
     }
     
-    .modal-icon {
-      font-size: 2.5rem;
-      margin-bottom: var(--space-16);
-    }
-    
+    .modal-icon { font-size: 2.5rem; margin-bottom: var(--space-16); }
     .modal-title {
       font-size: 1.8rem;
       font-weight: 800;
@@ -567,20 +626,14 @@
       color: transparent;
       display: inline-block;
     }
-    
     .modal-description {
       font-size: 0.9rem;
       color: var(--silver-muted);
       margin-bottom: var(--space-24);
       padding-bottom: var(--space-16);
       border-bottom: 1px solid var(--border-subtle);
-      line-height: 1.6;
     }
-    
-    .modal-section {
-      margin-bottom: var(--space-24);
-    }
-    
+    .modal-section { margin-bottom: var(--space-24); }
     .modal-section-title {
       font-size: 0.8rem;
       font-weight: 700;
@@ -592,21 +645,18 @@
       align-items: center;
       gap: var(--space-8);
     }
-    
     .modal-section-title::after {
       content: '';
       flex: 1;
       height: 1px;
       background: linear-gradient(90deg, var(--border-gold), transparent);
     }
-    
     .modal-list {
       list-style: none;
       display: flex;
       flex-wrap: wrap;
       gap: var(--space-8) var(--space-16);
     }
-    
     .modal-list li {
       font-size: 0.85rem;
       color: var(--silver-dim);
@@ -614,23 +664,8 @@
       align-items: center;
       gap: 0.35rem;
     }
-    
-    .modal-list li::before {
-      content: '•';
-      color: var(--ember-gold);
-      font-weight: 700;
-    }
-    
-    .modal-list--grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: var(--space-8);
-    }
-    
-    .modal-list--grid li::before {
-      content: '•';
-    }
-    
+    .modal-list li::before { content: '•'; color: var(--ember-gold); font-weight: 700; }
+    .modal-list--grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-8); }
     .modal-included {
       background: var(--ember-soft);
       border-radius: var(--border-radius-md);
@@ -638,33 +673,14 @@
       margin: var(--space-20) 0;
       border-left: 2px solid var(--ember-gold);
     }
-    
-    .modal-included-title {
-      font-size: 0.7rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      color: var(--ember-gold);
-      margin-bottom: var(--space-12);
-    }
-    
-    .modal-optional {
-      margin: var(--space-20) 0;
-    }
-    
-    .modal-optional-title {
-      font-size: 0.7rem;
-      font-weight: 600;
-      color: var(--silver-muted);
-      margin-bottom: var(--space-8);
-    }
-    
+    .modal-optional { margin: var(--space-20) 0; }
+    .modal-optional-title { font-size: 0.7rem; font-weight: 600; color: var(--silver-muted); margin-bottom: var(--space-8); }
     .modal-optional-list {
       list-style: none;
       display: flex;
       flex-wrap: wrap;
       gap: var(--space-8);
     }
-    
     .modal-optional-list li {
       font-size: 0.7rem;
       color: var(--silver-dim);
@@ -672,14 +688,11 @@
       padding: 0.2rem 0.75rem;
       border-radius: 100px;
     }
+    .modal-btn { margin-top: var(--space-28); width: 100%; justify-content: center; }
     
-    .modal-btn {
-      margin-top: var(--space-28);
-      width: 100%;
-      justify-content: center;
-    }
-    
-    /* Processo, Diferenciais, Galeria, Depoimentos, CTA, Footer */
+    /* ============================================
+       OUTRAS SEÇÕES
+    ============================================ */
     .process { padding: var(--space-64) 0; }
     .process-grid {
       display: grid;
@@ -689,7 +702,6 @@
     }
     @media (max-width: 768px) { .process-grid { grid-template-columns: repeat(2, 1fr); } }
     @media (max-width: 480px) { .process-grid { grid-template-columns: 1fr; } }
-    
     .process-step {
       background: var(--bg-elevated);
       border: 1px solid var(--border-subtle);
@@ -702,6 +714,7 @@
       transform: translateY(-4px);
       border-color: var(--border-gold);
       background: var(--bg-card);
+      box-shadow: inset 0 0 20px rgba(200, 80, 0, 0.04);
     }
     .step-number {
       width: 52px;
@@ -720,8 +733,6 @@
     .differentiators {
       padding: var(--space-80) 0;
       background: radial-gradient(ellipse 80% 50% at 50% 50%, rgba(245, 166, 35, 0.02), transparent);
-      border-top: 1px solid var(--border-subtle);
-      border-bottom: 1px solid var(--border-subtle);
     }
     .diff-grid {
       display: grid;
@@ -732,7 +743,7 @@
     @media (max-width: 900px) { .diff-grid { grid-template-columns: 1fr; } }
     .diff-card {
       background: var(--bg-card);
-      border: 1px solid var(--border-subtle);
+      border: 1px solid var(--border-copper);
       border-radius: var(--border-radius-md);
       padding: var(--space-32);
       transition: all var(--transition-smooth);
@@ -750,8 +761,9 @@
     }
     .diff-card:hover {
       transform: translateX(6px);
-      border-color: var(--border-medium);
+      border-color: var(--border-gold);
       background: var(--bg-card-hover);
+      box-shadow: inset 0 0 30px rgba(200, 80, 0, 0.04);
     }
     .diff-icon { font-size: 2rem; margin-bottom: var(--space-16); }
     .diff-card h3 { font-size: 1rem; font-weight: 700; margin-bottom: var(--space-8); }
@@ -769,7 +781,7 @@
     .gallery-item {
       aspect-ratio: 1/1;
       background: linear-gradient(145deg, #121212, #0a0a0a);
-      border: 1px solid var(--border-subtle);
+      border: 1px solid var(--border-copper);
       border-radius: var(--border-radius-sm);
       display: flex;
       flex-direction: column;
@@ -787,6 +799,7 @@
       border-color: var(--border-gold);
       transform: scale(1.02) translateY(0);
       opacity: 1;
+      box-shadow: inset 0 0 20px rgba(200, 80, 0, 0.05);
     }
     .gallery-icon { font-size: 1.6rem; }
     .gallery-label { font-size: 0.6rem; color: var(--silver-dim); text-align: center; }
@@ -795,8 +808,6 @@
     .testimonials {
       padding: var(--space-80) 0;
       background: radial-gradient(ellipse 80% 50% at 50% 50%, rgba(245, 166, 35, 0.02), transparent);
-      border-top: 1px solid var(--border-subtle);
-      border-bottom: 1px solid var(--border-subtle);
     }
     .testimonials-grid {
       display: grid;
@@ -808,15 +819,16 @@
     @media (max-width: 600px) { .testimonials-grid { grid-template-columns: 1fr; } }
     .testimonial-card {
       background: var(--bg-elevated);
-      border: 1px solid var(--border-subtle);
+      border: 1px solid var(--border-copper);
       border-radius: var(--border-radius-md);
       padding: var(--space-28);
       transition: all var(--transition-smooth);
     }
     .testimonial-card:hover {
       background: var(--bg-card-hover);
-      border-color: var(--border-medium);
+      border-color: var(--border-gold);
       transform: translateY(-4px);
+      box-shadow: inset 0 0 20px rgba(200, 80, 0, 0.04);
     }
     .testimonial-stars { color: #FFB800; letter-spacing: 2px; font-size: 0.7rem; margin-bottom: var(--space-16); }
     .testimonial-quote { font-size: 0.9rem; line-height: 1.65; color: var(--silver-muted); margin-bottom: var(--space-16); }
@@ -835,13 +847,13 @@
       background: radial-gradient(ellipse 60% 40% at 50% 100%, rgba(211, 47, 47, 0.08), transparent);
       pointer-events: none;
     }
-    .cta-section h2 { font-size: clamp(2rem, 4.5vw, 3.2rem); font-weight: 800; letter-spacing: -0.02em; margin-bottom: var(--space-20); }
+    .cta-section h2 { font-size: clamp(2rem, 4.5vw, 3.2rem); font-weight: 800; letter-spacing: -0.02em; margin-bottom: var(--space-20); font-family: var(--font-serif); }
     .cta-section p { color: var(--silver-muted); margin-bottom: var(--space-32); }
     
     .footer {
       padding: var(--space-64) 0 var(--space-40);
       background: var(--bg-elevated);
-      border-top: 1px solid var(--border-subtle);
+      border-top: 1px solid var(--border-copper);
     }
     .footer-grid {
       display: grid;
@@ -871,12 +883,11 @@
     .footer-copyright {
       text-align: center;
       padding-top: var(--space-32);
-      border-top: 1px solid var(--border-subtle);
+      border-top: 1px solid var(--border-copper);
       font-size: 0.7rem;
       color: var(--silver-faint);
     }
     
-    /* Scroll Reveal */
     .reveal-fade-up {
       opacity: 0;
       transform: translateY(28px);
@@ -896,9 +907,11 @@
   </style>
 </head>
 <body>
+<div class="noise-bg"></div>
 
 <main>
   <section class="hero">
+    <div class="ember-line"></div>
     <div class="container">
       <div class="hero-grid">
         <div class="hero-content">
@@ -917,13 +930,17 @@
           <div class="hero-card">
             <div class="hero-card-tag">🔥 Experiência Premium</div>
             <div class="hero-card-icon">🍖</div>
-            <h3 style="font-size: 1.4rem; margin-bottom: 0.5rem;">Estrutura completa</h3>
+            <h3 style="font-size: 1.4rem; margin-bottom: 0.5rem; font-family: var(--font-serif);">Estrutura completa</h3>
             <p style="font-size: 0.85rem; color: var(--silver-dim);">Churrasqueira, carvão, equipe e limpeza — tudo incluso. Você só recebe os elogios.</p>
           </div>
         </div>
       </div>
     </div>
   </section>
+
+  <div class="section-divider">
+    <svg viewBox="0 0 1200 48" preserveAspectRatio="none"><path d="M0,24 Q300,0 600,24 T1200,24" stroke="rgba(245,166,35,0.15)" fill="none" stroke-width="1"/><path d="M0,24 Q300,48 600,24 T1200,24" stroke="rgba(211,47,47,0.1)" fill="none" stroke-width="0.5"/></svg>
+  </div>
 
   <section class="menus">
     <div class="container">
@@ -945,6 +962,10 @@
     </div>
   </section>
 
+  <div class="section-divider">
+    <svg viewBox="0 0 1200 48" preserveAspectRatio="none"><path d="M0,24 Q300,0 600,24 T1200,24" stroke="rgba(245,166,35,0.15)" fill="none" stroke-width="1"/><path d="M0,24 Q300,48 600,24 T1200,24" stroke="rgba(211,47,47,0.1)" fill="none" stroke-width="0.5"/></svg>
+  </div>
+
   <section class="process">
     <div class="container">
       <div class="section-header">
@@ -962,6 +983,10 @@
     </div>
   </section>
 
+  <div class="section-divider">
+    <svg viewBox="0 0 1200 48" preserveAspectRatio="none"><path d="M0,24 Q300,0 600,24 T1200,24" stroke="rgba(245,166,35,0.15)" fill="none" stroke-width="1"/></svg>
+  </div>
+
   <section class="differentiators">
     <div class="container">
       <div class="section-header">
@@ -978,6 +1003,10 @@
       </div>
     </div>
   </section>
+
+  <div class="section-divider">
+    <svg viewBox="0 0 1200 48" preserveAspectRatio="none"><path d="M0,24 Q300,48 600,24 T1200,24" stroke="rgba(211,47,47,0.12)" fill="none" stroke-width="0.8"/></svg>
+  </div>
 
   <section class="gallery-section">
     <div class="container">
@@ -1000,6 +1029,10 @@
     </div>
   </section>
 
+  <div class="section-divider">
+    <svg viewBox="0 0 1200 48" preserveAspectRatio="none"><path d="M0,24 Q300,0 600,24 T1200,24" stroke="rgba(245,166,35,0.12)" fill="none" stroke-width="0.8"/></svg>
+  </div>
+
   <section class="testimonials">
     <div class="container">
       <div class="section-header"><div class="section-eyebrow">Google · Avaliações Reais</div><h2>Quem Prova Aprova</h2><div class="section-sub">+580 eventos realizados com excelência</div></div>
@@ -1013,6 +1046,10 @@
       </div>
     </div>
   </section>
+
+  <div class="section-divider">
+    <svg viewBox="0 0 1200 48" preserveAspectRatio="none"><path d="M0,24 Q300,48 600,24 T1200,24" stroke="rgba(211,47,47,0.1)" fill="none" stroke-width="0.8"/></svg>
+  </div>
 
   <section class="cta-section">
     <div class="container">
@@ -1036,111 +1073,33 @@
   </div>
 </footer>
 
-<!-- Modal de Cardápio Detalhado -->
 <div id="menuModal" class="modal">
-  <div class="modal-content">
-    <button class="modal-close" id="closeModal">✕</button>
-    <div class="modal-body" id="modalBody"></div>
-  </div>
+  <div class="modal-content"><button class="modal-close" id="closeModal">✕</button><div class="modal-body" id="modalBody"></div></div>
 </div>
 
 <script>
   (function() {
     const WHATSAPP_CONFIG = { number: '5511999999999', message: 'Quero um orçamento para meu evento' };
     const getWhatsAppUrl = () => `https://wa.me/${WHATSAPP_CONFIG.number}?text=${encodeURIComponent(WHATSAPP_CONFIG.message)}`;
-    
-    document.querySelectorAll('[data-wa]').forEach(btn => {
-      if (btn.tagName === 'A') { btn.href = getWhatsAppUrl(); btn.target = '_blank'; btn.rel = 'noopener noreferrer'; }
-    });
+    document.querySelectorAll('[data-wa]').forEach(btn => { if (btn.tagName === 'A') { btn.href = getWhatsAppUrl(); btn.target = '_blank'; btn.rel = 'noopener noreferrer'; } });
 
     const menusData = {
-      ouro: {
-        icon: '🥩', title: 'Churrasco Ouro', badge: '⭐ Mais Pedido',
-        description: 'O cardápio mais completo com as melhores carnes do mercado, bebidas premium e toda estrutura para um evento inesquecível.',
-        carnes: ['Picanha', 'Bife de chorizo', 'Bife ancho', 'Costela em tira', 'Fraldinha', 'Panceta', 'Tulipa de frango', 'Linguiça cuiabana', 'Coração', 'Pão de alho', 'Queijo coalho'],
-        guarnicoes: ['Arroz branco', 'Feijão tropeiro', 'Rodelas de palmito', 'Maionese', 'Farofa temperada', 'Vinagrete', 'Agrião, rúcula com tomate seco e queijo branco', 'Beterraba com cenoura ralada e ovos de codorna'],
-        bebidas: ['Coca-Cola normal', 'Coca-Cola zero', 'Guaraná Antarctica', 'Soda limonada', 'Água mineral', 'Água mineral com gás', 'Original', 'Budweiser', 'Spaten'],
-        entradas: ['Salgadinhos sortidos fritos na hora do evento'],
-        estrutura: ['Equipe toda uniformizada', 'Copos e pratos de louça branca', 'Talheres, guardanapos', '4 horas de evento', 'Crianças até 6 anos não pagam', 'Churrasqueiro, Copeira e Garçom'],
-        opcionais: ['Roda Gigante Costela', 'Bar', 'Chopp', 'Bolo', 'Docinhos']
-      },
-      prata: {
-        icon: '🔥', title: 'Churrasco Prata',
-        description: 'Carnes nobres selecionadas com guarnições clássicas e bebidas para garantir um churrasco de qualidade.',
-        carnes: ['Bife de chorizo', 'Bife ancho', 'Panceta', 'Coxinha de frango', 'Linguiça toscana', 'Coração', 'Pão de alho', 'Queijo coalho'],
-        guarnicoes: ['Arroz branco', 'Maionese', 'Farofa temperada', 'Vinagrete', 'Agrião e rúcula com tomate seco', 'Beterraba com cenoura ralada e ovos de codorna'],
-        bebidas: ['Coca-Cola', 'Guaraná Antarctica', 'Fanta Laranja', 'Água mineral'],
-        entradas: ['Salgadinhos sortidos fritos na hora do evento'],
-        estrutura: ['Equipe uniformizada', 'Copos e pratos de louça branca', 'Talheres, guardanapos', '4 horas de evento', 'Crianças até 6 anos não pagam', 'Churrasqueiro, Copeira e Garçom'],
-        opcionais: ['Roda Gigante Costela', 'Bar', 'Chopp', 'Cerveja latinha', 'Bolo', 'Docinhos']
-      },
-      basico: {
-        icon: '🍗', title: 'Churrasco Básico',
-        description: 'A opção mais acessível com carnes saborosas, guarnições e toda estrutura para um churrasco descomplicado.',
-        carnes: ['Bife de chorizo', 'Coxinha de frango', 'Linguiça toscana'],
-        guarnicoes: ['Arroz branco', 'Maionese', 'Farofa temperada', 'Vinagrete', 'Agrião e rúcula com tomate seco', 'Beterraba com cenoura ralada e ovos de codorna'],
-        estrutura: ['Equipe uniformizada', 'Copos e pratos de louça branca', 'Talheres, guardanapos', '4 horas de evento', 'Crianças até 6 anos não pagam', 'Churrasqueiro, Copeira e Garçom'],
-        opcionais: ['Roda Gigante Costela', 'Bar', 'Chopp', 'Cerveja', 'Refrigerantes', 'Bolo', 'Docinhos']
-      },
-      espetinhos: {
-        icon: '🍢', title: 'Festival de Espetinhos',
-        description: 'Espetinhos variados grelhados na hora com opções premium disponíveis. Perfeito para festas ao ar livre.',
-        carnes: ['Carne', 'Frango', 'Linguiça toscana', 'Coração', 'Pão de alho'],
-        guarnicoes: ['Arroz branco', 'Maionese', 'Farofa temperada', 'Vinagrete', 'Agrião e rúcula com tomate seco', 'Beterraba com cenoura ralada e ovos de codorna'],
-        bebidas: ['Coca-Cola', 'Guaraná', 'Soda limonada', 'Água mineral'],
-        estrutura: ['Equipe uniformizada', 'Copos e pratos de louça branca', 'Talheres, guardanapos', '4 horas de evento', 'Crianças até 6 anos não pagam'],
-        opcionais: ['Espetinho de picanha', 'Linguiça apimentada', 'Espetinho misto', 'Espetinho de panceta', 'Espetinho de camarão', 'Espetinho de provolone', 'Queijo coalho', 'Romeu e Julieta']
-      },
-      coquetel: {
-        icon: '🥂', title: 'Cardápio Coquetel',
-        description: 'Salgados fritos na hora, assados, lanches e sobremesas para um evento sofisticado e gostoso.',
-        salgados: ['Coxinha', 'Risole de presunto e queijo', 'Bolinha de queijo', 'Kibe'],
-        assados: ['Esfirra de carne', 'Esfirra de frango', 'Pão com carne louca', 'Cachorro-quente completo', 'Mini hambúrguer com batata frita'],
-        sobremesas: ['Bolo (sabores à escolha)', 'Brigadeiro', 'Beijinho', 'Cajuzinho'],
-        bebidas: ['Coca-Cola', 'Fanta', 'Guaraná Antarctica', 'Soda Antarctica', 'Sucos de caixinha', 'Água mineral'],
-        estrutura: ['Equipe uniformizada', 'Copos de vidro', 'Pratos e talheres para bolo', 'Guardanapos', '4 horas de evento', 'Crianças até 6 anos não pagam', 'Copeira e Garçons']
-      },
-      finger: {
-        icon: '🍴', title: 'Finger Food',
-        description: 'Uma seleção exclusiva de petiscos e pratos para eventos que pedem sofisticação sem formalidade.',
-        salgados: ['Coxinha', 'Risole de presunto e queijo', 'Bolinha de queijo', 'Kibe'],
-        assados: ['Esfirra de carne', 'Esfirra de frango', 'Pão com carne louca', 'Mini hambúrguer com batata frita'],
-        especiais: ['Macarrão penne ao molho bolonhesa', 'Rondelle de presunto e queijo ao molho bolonhesa', 'Escondidinho de carne seca', 'Espeto de queijo com manjericão e tomate cereja'],
-        sobremesas: ['Bolo (sabores à escolha)', 'Brigadeiro', 'Beijinho', 'Cajuzinho'],
-        estrutura: ['Equipe uniformizada', 'Copos de vidro', 'Pratos e talheres', 'Guardanapos', '4 horas de evento', 'Crianças até 6 anos não pagam', 'Copeira e Garçons']
-      },
-      buteco: {
-        icon: '🍺', title: 'Cardápio Buteco',
-        description: 'Pratos e petiscos no melhor estilo butequeiro, com atmosfera animada e comida de verdade.',
-        pratos: ['Contra filé / Bife de chorizo na chapa', 'Tulipa de frango', 'Linguiça calabresa acebolada', 'Mini pão francês', 'Salame, queijo e azeitona', 'Mini hambúrguer'],
-        entradas: ['Kibe', 'Bolinho de calabresa', 'Bolinho de carne'],
-        bebidas: ['Coca-Cola', 'Guaraná Antarctica', 'Soda limonada', 'Suco de caixinha', 'Água mineral'],
-        estrutura: ['Equipe uniformizada', 'Copos e pratos linha branca', 'Talheres, guardanapos', '4 horas de evento', 'Crianças até 6 anos não pagam', 'Garçom e Copeira']
-      },
-      feijoada: {
-        icon: '🍲', title: 'Feijoada Completa',
-        description: 'Uma feijoada completa com todas as carnes tradicionais, acompanhamentos e bebidas para uma imersão total na cultura brasileira.',
-        pratos: ['Costela de porco', 'Bacon', 'Carne seca', 'Linguiça paio', 'Arroz branco', 'Farofa temperada', 'Couve com bacon', 'Torresmo', 'Bisteca de porco'],
-        bebidas: ['Coca-Cola', 'Fanta', 'Guaraná Antarctica', 'Soda Antarctica', 'Água mineral'],
-        entradas: ['Salgadinhos fritos na hora'],
-        estrutura: ['Equipe uniformizada', 'Copos de vidro', 'Pratos de louça branca', 'Talheres inox', 'Guardanapos', '4 horas de evento', 'Crianças até 6 anos não pagam'],
-        opcionais: ['Bar', 'Cerveja', 'Banana à milanesa', 'Bolo', 'Docinhos']
-      }
+      ouro: { icon: '🥩', title: 'Churrasco Ouro', badge: '⭐ Mais Pedido', description: 'O cardápio mais completo com as melhores carnes do mercado, bebidas premium e toda estrutura para um evento inesquecível.', carnes: ['Picanha', 'Bife de chorizo', 'Bife ancho', 'Costela em tira', 'Fraldinha', 'Panceta', 'Tulipa de frango', 'Linguiça cuiabana', 'Coração', 'Pão de alho', 'Queijo coalho'], guarnicoes: ['Arroz branco', 'Feijão tropeiro', 'Rodelas de palmito', 'Maionese', 'Farofa temperada', 'Vinagrete', 'Agrião, rúcula com tomate seco e queijo branco', 'Beterraba com cenoura ralada e ovos de codorna'], bebidas: ['Coca-Cola normal', 'Coca-Cola zero', 'Guaraná Antarctica', 'Soda limonada', 'Água mineral', 'Água mineral com gás', 'Original', 'Budweiser', 'Spaten'], entradas: ['Salgadinhos sortidos fritos na hora do evento'], estrutura: ['Equipe toda uniformizada', 'Copos e pratos de louça branca', 'Talheres, guardanapos', '4 horas de evento', 'Crianças até 6 anos não pagam', 'Churrasqueiro, Copeira e Garçom'], opcionais: ['Roda Gigante Costela', 'Bar', 'Chopp', 'Bolo', 'Docinhos'] },
+      prata: { icon: '🔥', title: 'Churrasco Prata', description: 'Carnes nobres selecionadas com guarnições clássicas e bebidas para garantir um churrasco de qualidade.', carnes: ['Bife de chorizo', 'Bife ancho', 'Panceta', 'Coxinha de frango', 'Linguiça toscana', 'Coração', 'Pão de alho', 'Queijo coalho'], guarnicoes: ['Arroz branco', 'Maionese', 'Farofa temperada', 'Vinagrete', 'Agrião e rúcula com tomate seco', 'Beterraba com cenoura ralada e ovos de codorna'], bebidas: ['Coca-Cola', 'Guaraná Antarctica', 'Fanta Laranja', 'Água mineral'], entradas: ['Salgadinhos sortidos fritos na hora do evento'], estrutura: ['Equipe uniformizada', 'Copos e pratos de louça branca', 'Talheres, guardanapos', '4 horas de evento', 'Crianças até 6 anos não pagam', 'Churrasqueiro, Copeira e Garçom'], opcionais: ['Roda Gigante Costela', 'Bar', 'Chopp', 'Cerveja latinha', 'Bolo', 'Docinhos'] },
+      basico: { icon: '🍗', title: 'Churrasco Básico', description: 'A opção mais acessível com carnes saborosas, guarnições e toda estrutura para um churrasco descomplicado.', carnes: ['Bife de chorizo', 'Coxinha de frango', 'Linguiça toscana'], guarnicoes: ['Arroz branco', 'Maionese', 'Farofa temperada', 'Vinagrete', 'Agrião e rúcula com tomate seco', 'Beterraba com cenoura ralada e ovos de codorna'], estrutura: ['Equipe uniformizada', 'Copos e pratos de louça branca', 'Talheres, guardanapos', '4 horas de evento', 'Crianças até 6 anos não pagam', 'Churrasqueiro, Copeira e Garçom'], opcionais: ['Roda Gigante Costela', 'Bar', 'Chopp', 'Cerveja', 'Refrigerantes', 'Bolo', 'Docinhos'] },
+      espetinhos: { icon: '🍢', title: 'Festival de Espetinhos', description: 'Espetinhos variados grelhados na hora com opções premium disponíveis. Perfeito para festas ao ar livre.', carnes: ['Carne', 'Frango', 'Linguiça toscana', 'Coração', 'Pão de alho'], guarnicoes: ['Arroz branco', 'Maionese', 'Farofa temperada', 'Vinagrete', 'Agrião e rúcula com tomate seco', 'Beterraba com cenoura ralada e ovos de codorna'], bebidas: ['Coca-Cola', 'Guaraná', 'Soda limonada', 'Água mineral'], estrutura: ['Equipe uniformizada', 'Copos e pratos de louça branca', 'Talheres, guardanapos', '4 horas de evento', 'Crianças até 6 anos não pagam'], opcionais: ['Espetinho de picanha', 'Linguiça apimentada', 'Espetinho misto', 'Espetinho de panceta', 'Espetinho de camarão', 'Espetinho de provolone', 'Queijo coalho', 'Romeu e Julieta'] },
+      coquetel: { icon: '🥂', title: 'Cardápio Coquetel', description: 'Salgados fritos na hora, assados, lanches e sobremesas para um evento sofisticado e gostoso.', salgados: ['Coxinha', 'Risole de presunto e queijo', 'Bolinha de queijo', 'Kibe'], assados: ['Esfirra de carne', 'Esfirra de frango', 'Pão com carne louca', 'Cachorro-quente completo', 'Mini hambúrguer com batata frita'], sobremesas: ['Bolo (sabores à escolha)', 'Brigadeiro', 'Beijinho', 'Cajuzinho'], bebidas: ['Coca-Cola', 'Fanta', 'Guaraná Antarctica', 'Soda Antarctica', 'Sucos de caixinha', 'Água mineral'], estrutura: ['Equipe uniformizada', 'Copos de vidro', 'Pratos e talheres para bolo', 'Guardanapos', '4 horas de evento', 'Crianças até 6 anos não pagam', 'Copeira e Garçons'] },
+      finger: { icon: '🍴', title: 'Finger Food', description: 'Uma seleção exclusiva de petiscos e pratos para eventos que pedem sofisticação sem formalidade.', salgados: ['Coxinha', 'Risole de presunto e queijo', 'Bolinha de queijo', 'Kibe'], assados: ['Esfirra de carne', 'Esfirra de frango', 'Pão com carne louca', 'Mini hambúrguer com batata frita'], especiais: ['Macarrão penne ao molho bolonhesa', 'Rondelle de presunto e queijo ao molho bolonhesa', 'Escondidinho de carne seca', 'Espeto de queijo com manjericão e tomate cereja'], sobremesas: ['Bolo (sabores à escolha)', 'Brigadeiro', 'Beijinho', 'Cajuzinho'], estrutura: ['Equipe uniformizada', 'Copos de vidro', 'Pratos e talheres', 'Guardanapos', '4 horas de evento', 'Crianças até 6 anos não pagam', 'Copeira e Garçons'] },
+      buteco: { icon: '🍺', title: 'Cardápio Buteco', description: 'Pratos e petiscos no melhor estilo butequeiro, com atmosfera animada e comida de verdade.', pratos: ['Contra filé / Bife de chorizo na chapa', 'Tulipa de frango', 'Linguiça calabresa acebolada', 'Mini pão francês', 'Salame, queijo e azeitona', 'Mini hambúrguer'], entradas: ['Kibe', 'Bolinho de calabresa', 'Bolinho de carne'], bebidas: ['Coca-Cola', 'Guaraná Antarctica', 'Soda limonada', 'Suco de caixinha', 'Água mineral'], estrutura: ['Equipe uniformizada', 'Copos e pratos linha branca', 'Talheres, guardanapos', '4 horas de evento', 'Crianças até 6 anos não pagam', 'Garçom e Copeira'] },
+      feijoada: { icon: '🍲', title: 'Feijoada Completa', description: 'Uma feijoada completa com todas as carnes tradicionais, acompanhamentos e bebidas para uma imersão total na cultura brasileira.', pratos: ['Costela de porco', 'Bacon', 'Carne seca', 'Linguiça paio', 'Arroz branco', 'Farofa temperada', 'Couve com bacon', 'Torresmo', 'Bisteca de porco'], bebidas: ['Coca-Cola', 'Fanta', 'Guaraná Antarctica', 'Soda Antarctica', 'Água mineral'], entradas: ['Salgadinhos fritos na hora'], estrutura: ['Equipe uniformizada', 'Copos de vidro', 'Pratos de louça branca', 'Talheres inox', 'Guardanapos', '4 horas de evento', 'Crianças até 6 anos não pagam'], opcionais: ['Bar', 'Cerveja', 'Banana à milanesa', 'Bolo', 'Docinhos'] }
     };
 
     const modal = document.getElementById('menuModal');
     const modalBody = document.getElementById('modalBody');
     const closeModal = document.getElementById('closeModal');
-
     const openModal = (menuId) => {
-      const data = menusData[menuId];
-      if (!data) return;
-      
-      let html = `<div class="modal-icon">${data.icon}</div>
-        <h2 class="modal-title">${data.title}</h2>`;
-      if (data.badge) html += `<div class="menu-badge" style="display: inline-block; margin-top: 0; margin-left: var(--space-12);">${data.badge}</div>`;
-      html += `<p class="modal-description">${data.description}</p>`;
-      
+      const data = menusData[menuId]; if (!data) return;
+      let html = `<div class="modal-icon">${data.icon}</div><h2 class="modal-title">${data.title}</h2>` + (data.badge ? `<div class="menu-badge" style="display: inline-block; margin-top: 0; margin-left: var(--space-12);">${data.badge}</div>` : '') + `<p class="modal-description">${data.description}</p>`;
       if (data.carnes) html += `<div class="modal-section"><div class="modal-section-title">Carnes</div><ul class="modal-list modal-list--grid">${data.carnes.map(c => `<li>${c}</li>`).join('')}</ul></div>`;
       if (data.pratos) html += `<div class="modal-section"><div class="modal-section-title">Pratos</div><ul class="modal-list modal-list--grid">${data.pratos.map(p => `<li>${p}</li>`).join('')}</ul></div>`;
       if (data.guarnicoes) html += `<div class="modal-section"><div class="modal-section-title">Guarnições</div><ul class="modal-list">${data.guarnicoes.map(g => `<li>${g}</li>`).join('')}</ul></div>`;
@@ -1150,56 +1109,22 @@
       if (data.assados) html += `<div class="modal-section"><div class="modal-section-title">Assados & Lanches</div><ul class="modal-list">${data.assados.map(a => `<li>${a}</li>`).join('')}</ul></div>`;
       if (data.especiais) html += `<div class="modal-section"><div class="modal-section-title">Pratos Especiais</div><ul class="modal-list">${data.especiais.map(e => `<li>${e}</li>`).join('')}</ul></div>`;
       if (data.sobremesas) html += `<div class="modal-section"><div class="modal-section-title">Sobremesas</div><ul class="modal-list">${data.sobremesas.map(s => `<li>${s}</li>`).join('')}</ul></div>`;
-      
       html += `<div class="modal-included"><div class="modal-included-title">🎯 Estrutura Inclusa</div><ul class="modal-list">${data.estrutura.map(e => `<li>${e}</li>`).join('')}</ul></div>`;
-      
       if (data.opcionais) html += `<div class="modal-optional"><div class="modal-optional-title">✨ Serviços Opcionais</div><div class="modal-optional-list">${data.opcionais.map(o => `<li>${o}</li>`).join('')}</div></div>`;
-      
       html += `<a href="#" class="btn-whats modal-btn" data-modal-wa>📲 Solicitar Orçamento via WhatsApp</a>`;
-      
-      modalBody.innerHTML = html;
-      modal.classList.add('active');
-      document.body.style.overflow = 'hidden';
-      
-      const modalWaBtn = modalBody.querySelector('[data-modal-wa]');
-      if (modalWaBtn) {
-        modalWaBtn.href = getWhatsAppUrl();
-        modalWaBtn.target = '_blank';
-        modalWaBtn.rel = 'noopener noreferrer';
-      }
+      modalBody.innerHTML = html; modal.classList.add('active'); document.body.style.overflow = 'hidden';
+      const modalWa = modalBody.querySelector('[data-modal-wa]'); if (modalWa) { modalWa.href = getWhatsAppUrl(); modalWa.target = '_blank'; modalWa.rel = 'noopener noreferrer'; }
     };
-    
-    const closeModalFunc = () => {
-      modal.classList.remove('active');
-      document.body.style.overflow = '';
-    };
-    
-    document.querySelectorAll('[data-menu]').forEach(card => {
-      card.addEventListener('click', () => openModal(card.dataset.menu));
-    });
+    const closeModalFunc = () => { modal.classList.remove('active'); document.body.style.overflow = ''; };
+    document.querySelectorAll('[data-menu]').forEach(card => { card.addEventListener('click', () => openModal(card.dataset.menu)); });
     closeModal.addEventListener('click', closeModalFunc);
     modal.addEventListener('click', (e) => { if (e.target === modal) closeModalFunc(); });
-    
     const initScrollReveal = () => {
       const revealElements = document.querySelectorAll('.reveal-fade-up');
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('revealed'); observer.unobserve(entry.target); } });
-      }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+      const observer = new IntersectionObserver((entries) => { entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('revealed'); observer.unobserve(entry.target); } }); }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
       revealElements.forEach(el => observer.observe(el));
     };
-    
-    const initParallax = () => {
-      const heroCard = document.querySelector('.hero-card');
-      if (heroCard) {
-        window.addEventListener('mousemove', (e) => {
-          const mouseX = e.clientX / window.innerWidth;
-          const mouseY = e.clientY / window.innerHeight;
-          heroCard.style.transform = `rotate(${(mouseY - 0.5) * 0.05}deg) translateY(${(mouseY - 0.5) * -4}px)`;
-        });
-      }
-    };
-    
-    document.addEventListener('DOMContentLoaded', () => { initScrollReveal(); initParallax(); });
+    document.addEventListener('DOMContentLoaded', () => { initScrollReveal(); });
   })();
 </script>
 </body>
